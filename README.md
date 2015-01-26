@@ -139,7 +139,7 @@
 ```
 
 ## rest(Alias : tail)
-### 배열의 첫 번째 항목을 제외한 모든 것을 반환.
+### 배열의 첫 번째 항목을 제외한 모든 것을 반환한다.
 #### (0.4.5 추가됨) 
 
     Example)
@@ -153,6 +153,76 @@
     };
 ```
 
+## intersect
+### 전달 된 모든 배열 사이에서 공통되는 항목을 포함하는 배열을 제공한다.
+
+    Example)
+    _.intersect([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+    => [1, 2]
+    
+```javascript
+    // Source
+    _.intersect = function(array) {
+      var rest = _.rest(arguments);
+      return _.select(_.uniq(array), function(item) {
+        return _.all(rest, function(other) {
+          return _.indexOf(other, item) >= 0;
+        });
+      });
+    };
+```
+
+## zip
+### 단일 배열에 여러 목록을 함께 압축한다. 인텍스를 공유하는 요소가 함께 간다.
+
+    Example)
+    _.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]);
+    => [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]]
+    
+```javascript
+    // Source
+    _.zip = function() {
+      var args = _.toArray(arguments);
+      var length = _.max(_.pluck(args, 'length'));
+      var results = new Array(length);
+      for (var i=0; i<length; i++) results[i] = _.pluck(args, String(i));
+      return results;
+    };
+```
+
+## indexOf
+### 배열 안에서 item이 최초로 출현하는 위치를 반환한다. 배열에 item이 포함되어 있지 않은 경우는 -1을 돌려 준다.
+
+    Example)
+    _.indexOf([1, 2, 3], 2);
+    => 1
+    
+```javascript
+    // Source
+    _.indexOf = function(array, item) {
+      if (array.indexOf) return array.indexOf(item);
+      for (var i=0, l=array.length; i<l; i++) if (array[i] === item) return i;
+      return -1;
+    };
+```
+
+## lastIndexOf
+### 배열 안에서 item이 마지막으로 출현하는 위치를 반환한다.
+#### (0.2.0 추가됨) 
+
+    Example)
+    _.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
+    => 4
+    
+```javascript
+    // Source
+    _.lastIndexOf = function(array, item) {
+      if (array.lastIndexOf) return array.lastIndexOf(item);
+      var i = array.length;
+      while (i--) if (array[i] === item) return i;
+      return -1;
+    };
+```
 
 
 
