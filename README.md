@@ -17,10 +17,6 @@
     };
 ```
 
-
-
-
-
 ## reduceRight(Alias : foldr)
 ### 값 주입(오른쪽 값부터)
 #### (0.3.3 추가됨) 
@@ -53,52 +49,56 @@
     
 ```javascript
     // Source
-    _.reduce = function(obj, memo, iterator, context) {
-    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
-    _.each(obj, function(value, index, list) {
-      memo = iterator.call(context, memo, value, index, list);
-    });
-      return memo;
+    _.sortBy = function(obj, iterator, context) {
+      return _.pluck(_.map(obj, function(value, index, list) {
+        return {
+          value : value,
+          criteria : iterator.call(context, value, index, list)
+        };
+      }).sort(function(left, right) {
+        var a = left.criteria, b = right.criteria;
+        return a < b ? -1 : a > b ? 1 : 0;
+      }), 'value');
     };
 ```
 
+## sortedIndex
+### iterator가순서를 유지하기 위해 객체의 삽입되어야하는 최소의 인덱스를 찾아내는 비교함수를 사용한다.
 
+변경점 :  
 
-
-
-## reduce 
-
-### memo값에 주입
-
-Install from npm
-
+    Example)
+    _.sortedIndex([10, 20, 30, 40, 50], 35);
+    => 3
+    
 ```javascript
-    _.reduce = function(obj, memo, iterator, context) {
-    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
-    _.each(obj, function(value, index, list) {
-      memo = iterator.call(context, memo, value, index, list);
-    });
-      return memo;
+    // Source
+    _.sortedIndex = function(array, obj, iterator) {
+      iterator = iterator || _.identity;
+      var low = 0, high = array.length;
+      while (low < high) {
+        var mid = (low + high) >> 1;
+        iterator(array[mid]) < iterator(obj) ? low = mid + 1 : high = mid;
+      }
+      return low;
     };
 ```
 
+## toArray
+### 안전하게 배열로 변환하여 모든 것을 iterable 하게 한다.
 
+변경점 :  
 
-
-
-## reduce 
-
-### memo값에 주입
-
-Install from npm
-
+    Example)
+    (function(){ return _.toArray(arguments).slice(0); })(1, 2, 3);
+    => [1, 2, 3]
+    
 ```javascript
-    _.reduce = function(obj, memo, iterator, context) {
-    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
-    _.each(obj, function(value, index, list) {
-      memo = iterator.call(context, memo, value, index, list);
-    });
-      return memo;
+    // Source
+    _.toArray = function(iterable) {
+      if (!iterable) return [];
+      if (_.isArray(iterable)) return iterable;
+      return _.map(iterable, function(val){ return val; });
     };
 ```
 
