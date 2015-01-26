@@ -3,8 +3,8 @@
 #### (0.2.0 이름 변경됨) 
 
     Example)
-    >var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
-    >=> 6
+    var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
+    => 6
 
 ```javascript
     // Source
