@@ -2,10 +2,12 @@
 ### 값 주입
 #### (0.2.0 이름 변경됨) 
 
+    Example)
     var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
     => 6
 
 ```javascript
+    // Source
     _.reduce = function(obj, memo, iterator, context) {
       if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
       _.each(obj, function(value, index, list) {
@@ -22,8 +24,13 @@
 ## reduceRight(Alias : foldr)
 ### 값 주입(오른쪽 값부터)
 #### (0.3.3 추가됨) 
-
+    
+    Example)
+    var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
+    => 6
+    
 ```javascript
+    // Source
     _.reduceRight = function(obj, memo, iterator, context) {
       if (obj && obj.reduceRight) return obj.reduceRight(_.bind(iterator, context), memo);
       var reversed = _.clone(_.toArray(obj)).reverse();
