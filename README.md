@@ -194,6 +194,7 @@ _.rest = function(array, index) {
 };
 ```
 
+```javascript
 ## intersect
 ### 전달 된 모든 배열 사이에서 공통되는 항목을 포함하는 배열을 제공한다.
 
@@ -201,7 +202,7 @@ _.rest = function(array, index) {
     _.intersect([1, 2, 3], [101, 2, 1, 10], [2, 1]);
     => [1, 2]
     
-```javascript
+
 // Source
 _.intersect = function(array) {
   var rest = _.rest(arguments);
