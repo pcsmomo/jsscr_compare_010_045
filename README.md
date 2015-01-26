@@ -1,11 +1,6 @@
-
-
-## reduce 
-#### Alias : inject, foldl
-#####(0.2.0 이름 변경됨)
-### memo값에 주입
-
-Install from npm
+## reduce(Alias : inject, foldl)
+### 값 주입
+#### (0.2.0 이름 변경됨) 
 
 ```javascript
     _.reduce = function(obj, memo, iterator, context) {
@@ -21,9 +16,9 @@ Install from npm
 
 
 
-## reduceRight 
-
-### memo값에 주입
+## reduceRight(Alias : foldr)
+### 값 주입(오른쪽 값부터)
+#### (0.3.3 추가됨) 
 
 ```javascript
     _.reduceRight = function(obj, memo, iterator, context) {
@@ -40,11 +35,10 @@ Install from npm
 
 
 
-## reduce 
+## sortBy(Alias : foldr)
+### 값 주입(오른쪽 값부터)
 
-### memo값에 주입
-
-Install from npm
+변경점 :  
 
 ```javascript
     _.reduce = function(obj, memo, iterator, context) {
