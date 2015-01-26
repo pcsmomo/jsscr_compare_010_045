@@ -2,6 +2,9 @@
 ### 값 주입
 #### (0.2.0 이름 변경됨) 
 
+    var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
+    => 6
+
 ```javascript
     _.reduce = function(obj, memo, iterator, context) {
       if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
