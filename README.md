@@ -1,37 +1,126 @@
-<span class="github-only">
 
-The stable release documentation can be found here https://epeli.github.io/underscore.string/
 
-</span>
+## reduce 
 
-# Underscore.string [![Build Status](https://secure.travis-ci.org/epeli/underscore.string.png?branch=master)](http://travis-ci.org/epeli/underscore.string) #
-
-Javascript lacks complete string manipulation operations.
-This an attempt to fill that gap. List of build-in methods can be found
-for example from [Dive Into JavaScript][d].
-Originally started as an Underscore.js extension but is a full standalone
-library nowadays.
-
-Upgrading from 2.x to 3.x? Please read the [changelog][c].
-
-[c]: https://github.com/epeli/underscore.string/blob/master/CHANGELOG.markdown#300
-
-## Usage 
-
-### In Node.js and Browserify
+### memo값에 주입
 
 Install from npm
 
-    npm install underscore.string
+```javascript
+    _.reduce = function(obj, memo, iterator, context) {
+    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+    _.each(obj, function(value, index, list) {
+      memo = iterator.call(context, memo, value, index, list);
+    });
+      return memo;
+    };
+```
 
-Require individual functions
+
+
+
+
+## reduce 
+
+### memo값에 주입
+
+Install from npm
 
 ```javascript
-var slugify = require("underscore.string/slugify");
-
-slugify("Hello world!")
-// => hello-world
+    _.reduce = function(obj, memo, iterator, context) {
+    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+    _.each(obj, function(value, index, list) {
+      memo = iterator.call(context, memo, value, index, list);
+    });
+      return memo;
+    };
 ```
+
+
+
+
+
+## reduce 
+
+### memo값에 주입
+
+Install from npm
+
+```javascript
+    _.reduce = function(obj, memo, iterator, context) {
+    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+    _.each(obj, function(value, index, list) {
+      memo = iterator.call(context, memo, value, index, list);
+    });
+      return memo;
+    };
+```
+
+
+
+
+
+## reduce 
+
+### memo값에 주입
+
+Install from npm
+
+```javascript
+    _.reduce = function(obj, memo, iterator, context) {
+    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+    _.each(obj, function(value, index, list) {
+      memo = iterator.call(context, memo, value, index, list);
+    });
+      return memo;
+    };
+```
+
+
+
+
+
+## reduce 
+
+### memo값에 주입
+
+Install from npm
+
+```javascript
+    _.reduce = function(obj, memo, iterator, context) {
+    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+    _.each(obj, function(value, index, list) {
+      memo = iterator.call(context, memo, value, index, list);
+    });
+      return memo;
+    };
+```
+
+## reduce 
+
+### memo값에 주입
+
+Install from npm
+
+```javascript
+    _.reduce = function(obj, memo, iterator, context) {
+    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+    _.each(obj, function(value, index, list) {
+      memo = iterator.call(context, memo, value, index, list);
+    });
+      return memo;
+    };
+```
+
+
+
+
+
+
+
+
+
+
 
 or load the full library to enable chaining
 
