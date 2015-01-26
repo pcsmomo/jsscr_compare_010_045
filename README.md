@@ -1,17 +1,18 @@
 
 
 ## reduce 
-
+#### Alias : inject, foldl
+#####(0.2.0 이름 변경됨)
 ### memo값에 주입
 
 Install from npm
 
 ```javascript
     _.reduce = function(obj, memo, iterator, context) {
-    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
-    _.each(obj, function(value, index, list) {
-      memo = iterator.call(context, memo, value, index, list);
-    });
+      if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+      _.each(obj, function(value, index, list) {
+        memo = iterator.call(context, memo, value, index, list);
+      });
       return memo;
     };
 ```
@@ -20,18 +21,17 @@ Install from npm
 
 
 
-## reduce 
+## reduceRight 
 
 ### memo값에 주입
 
-Install from npm
-
 ```javascript
-    _.reduce = function(obj, memo, iterator, context) {
-    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
-    _.each(obj, function(value, index, list) {
-      memo = iterator.call(context, memo, value, index, list);
-    });
+    _.reduceRight = function(obj, memo, iterator, context) {
+      if (obj && obj.reduceRight) return obj.reduceRight(_.bind(iterator, context), memo);
+      var reversed = _.clone(_.toArray(obj)).reverse();
+      _.each(reversed, function(value, index) {
+        memo = iterator.call(context, memo, value, index, obj);
+      });
       return memo;
     };
 ```
