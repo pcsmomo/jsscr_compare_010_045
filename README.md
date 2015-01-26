@@ -269,9 +269,12 @@ _.lastIndexOf = function(array, item) {
 ```
 
 
+[인증샷][s]
+[s]: https://drive.google.com/folderview?id=0B4Tb8adHs3DJMXJNbUFtSXZkY3M#
 
 참고자료
 https://cdn.rawgit.com/jashkenas/underscore/0.4.5/index.html
 http://underscorejs.org/
 https://github.com/tipjs/Underscore.js-kr/blob/master/underscore.js
 https://msdn.microsoft.com/ko-kr/library/ie/ff679975(v=vs.94).aspx
+
