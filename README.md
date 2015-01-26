@@ -1,6 +1,6 @@
 # Collections
 ## reduce(Alias : inject, foldl)
-### 리스트로부터의 하나의 결과를 작성한다.
+### 리스트로부터의 하나의 결과를 작성한다. 사용 가능한 경우, ECMAScript5 네이티브`reduce`에 위임한다.
 #### (0.2.0 이름 변경됨) 
 
     Example)
