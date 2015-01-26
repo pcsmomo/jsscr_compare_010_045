@@ -9,14 +9,14 @@
     => 6
 
 ```javascript
-    // Source
-    _.reduce = function(obj, memo, iterator, context) {
-      if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
-      _.each(obj, function(value, index, list) {
-        memo = iterator.call(context, memo, value, index, list);
-      });
-      return memo;
-    };
+// Source
+_.reduce = function(obj, memo, iterator, context) {
+  if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
+  _.each(obj, function(value, index, list) {
+    memo = iterator.call(context, memo, value, index, list);
+  });
+  return memo;
+};
 ```
 
 [reduce 메서드][a]
@@ -34,15 +34,15 @@
     => [4, 5, 2, 3, 0, 1]
     
 ```javascript
-    // Source
-    _.reduceRight = function(obj, memo, iterator, context) {
-      if (obj && obj.reduceRight) return obj.reduceRight(_.bind(iterator, context), memo);
-      var reversed = _.clone(_.toArray(obj)).reverse();
-      _.each(reversed, function(value, index) {
-        memo = iterator.call(context, memo, value, index, obj);
-      });
-      return memo;
-    };
+// Source
+_.reduceRight = function(obj, memo, iterator, context) {
+  if (obj && obj.reduceRight) return obj.reduceRight(_.bind(iterator, context), memo);
+  var reversed = _.clone(_.toArray(obj)).reverse();
+  _.each(reversed, function(value, index) {
+    memo = iterator.call(context, memo, value, index, obj);
+  });
+  return memo;
+};
 ```
 
 ## sortBy
@@ -53,18 +53,18 @@
     => [5, 4, 6, 3, 1, 2]
     
 ```javascript
-    // Source
-    _.sortBy = function(obj, iterator, context) {
-      return _.pluck(_.map(obj, function(value, index, list) {
-        return {
-          value : value,
-          criteria : iterator.call(context, value, index, list)
-        };
-      }).sort(function(left, right) {
-        var a = left.criteria, b = right.criteria;
-        return a < b ? -1 : a > b ? 1 : 0;
-      }), 'value');
+// Source
+_.sortBy = function(obj, iterator, context) {
+  return _.pluck(_.map(obj, function(value, index, list) {
+    return {
+      value : value,
+      criteria : iterator.call(context, value, index, list)
     };
+  }).sort(function(left, right) {
+    var a = left.criteria, b = right.criteria;
+    return a < b ? -1 : a > b ? 1 : 0;
+  }), 'value');
+};
 ```
 
     View Map
@@ -103,16 +103,16 @@
     => 3
     
 ```javascript
-    // Source
-    _.sortedIndex = function(array, obj, iterator) {
-      iterator = iterator || _.identity;
-      var low = 0, high = array.length;
-      while (low < high) {
-        var mid = (low + high) >> 1;
-        iterator(array[mid]) < iterator(obj) ? low = mid + 1 : high = mid;
-      }
-      return low;
-    };
+// Source
+_.sortedIndex = function(array, obj, iterator) {
+  iterator = iterator || _.identity;
+  var low = 0, high = array.length;
+  while (low < high) {
+    var mid = (low + high) >> 1;
+    iterator(array[mid]) < iterator(obj) ? low = mid + 1 : high = mid;
+  }
+  return low;
+};
 ```
 
 ## toArray
@@ -123,12 +123,12 @@
     => [1, 2, 3]
     
 ```javascript
-    // Source
-    _.toArray = function(iterable) {
-      if (!iterable) return [];         // falsy 값이면 빈객체 반환
-      if (_.isArray(iterable)) return iterable;     // 이미 배열이면 그대로 반환
-      return _.map(iterable, function(val){ return val; });     // 유사배열객체일 경우 _.map 을 이용하여 배열로 변환하여 반환
-    };
+// Source
+_.toArray = function(iterable) {
+  if (!iterable) return [];         // falsy 값이면 빈객체 반환
+  if (_.isArray(iterable)) return iterable;     // 이미 배열이면 그대로 반환
+  return _.map(iterable, function(val){ return val; });     // 유사배열객체일 경우 _.map 을 이용하여 배열로 변환하여 반환
+};
 ```
 
 의문) 배열의 형태일 때만 변환??
@@ -148,10 +148,10 @@
     => 3
     
 ```javascript
-    // Source
-    _.size = function(obj) {
-      return _.toArray(obj).length;
-    };
+// Source
+_.size = function(obj) {
+  return _.toArray(obj).length;
+};
 ```
 
 
@@ -168,10 +168,10 @@
     => [5, 4, 3]
     
 ```javascript
-    // Source
-    _.first = function(array, n) {
-      return n ? Array.prototype.slice.call(array, 0, n) : array[0];
-    };
+// Source
+_.first = function(array, n) {
+  return n ? Array.prototype.slice.call(array, 0, n) : array[0];
+};
 ```
 
 ## rest(Alias : tail)
@@ -185,10 +185,10 @@
     => [2, 1]
     
 ```javascript
-    // Source
-    _.rest = function(array, index) {
-      return Array.prototype.slice.call(array, _.isUndefined(index) ? 1 : index);
-    };
+// Source
+_.rest = function(array, index) {
+  return Array.prototype.slice.call(array, _.isUndefined(index) ? 1 : index);
+};
 ```
 
 ## intersect
@@ -199,15 +199,15 @@
     => [1, 2]
     
 ```javascript
-    // Source
-    _.intersect = function(array) {
-      var rest = _.rest(arguments);
-      return _.select(_.uniq(array), function(item) {
-        return _.all(rest, function(other) {
-          return _.indexOf(other, item) >= 0;
-        });
-      });
-    };
+// Source
+_.intersect = function(array) {
+  var rest = _.rest(arguments);
+  return _.select(_.uniq(array), function(item) {
+    return _.all(rest, function(other) {
+      return _.indexOf(other, item) >= 0;
+    });
+  });
+};
 ```
 
 ## zip
@@ -218,14 +218,14 @@
     => [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]]
     
 ```javascript
-    // Source
-    _.zip = function() {
-      var args = _.toArray(arguments);
-      var length = _.max(_.pluck(args, 'length'));
-      var results = new Array(length);
-      for (var i=0; i<length; i++) results[i] = _.pluck(args, String(i));
-      return results;
-    };
+// Source
+_.zip = function() {
+  var args = _.toArray(arguments);
+  var length = _.max(_.pluck(args, 'length'));
+  var results = new Array(length);
+  for (var i=0; i<length; i++) results[i] = _.pluck(args, String(i));
+  return results;
+};
 ```
 
 ## indexOf
@@ -236,12 +236,12 @@
     => 1
     
 ```javascript
-    // Source
-    _.indexOf = function(array, item) {
-      if (array.indexOf) return array.indexOf(item);
-      for (var i=0, l=array.length; i<l; i++) if (array[i] === item) return i;
-      return -1;
-    };
+// Source
+_.indexOf = function(array, item) {
+  if (array.indexOf) return array.indexOf(item);
+  for (var i=0, l=array.length; i<l; i++) if (array[i] === item) return i;
+  return -1;
+};
 ```
 
 의문) 첫번째 분기문은 브라우저 호환성 때문인지??
@@ -255,13 +255,13 @@
     => 4
     
 ```javascript
-    // Source
-    _.lastIndexOf = function(array, item) {
-      if (array.lastIndexOf) return array.lastIndexOf(item);
-      var i = array.length;
-      while (i--) if (array[i] === item) return i;
-      return -1;
-    };
+// Source
+_.lastIndexOf = function(array, item) {
+  if (array.lastIndexOf) return array.lastIndexOf(item);
+  var i = array.length;
+  while (i--) if (array[i] === item) return i;
+  return -1;
+};
 ```
 
 
