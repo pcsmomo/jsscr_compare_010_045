@@ -1,5 +1,6 @@
+# Collections
 ## reduce(Alias : inject, foldl)
-### 값 주입
+### 리스트로부터의 하나의 결과를 작성한다.
 #### (0.2.0 이름 변경됨) 
 
     Example)
@@ -18,7 +19,7 @@
 ```
 
 ## reduceRight(Alias : foldr)
-### 값 주입(오른쪽 값부터)
+### reduce와 동일한 기능을 한다. 하지만 리스트의 오른쪽 값부터 적용한다.
 #### (0.3.3 추가됨) 
     
     Example)
@@ -39,7 +40,7 @@
 ```
 
 ## sortBy
-### iterator가 제공하는 기준에 따라 객체의 값을 정렬.
+### iterator가 제공하는 기준에 따라 객체의 값을 정렬한다.
 
 변경점 :  
 
@@ -102,22 +103,55 @@
     };
 ```
 
-## reduce 
+## size
+### 안전하게 객체의 요소 수를 돌려 준다.
 
-### memo값에 주입
+변경점 :  
 
-Install from npm
-
+    Example)
+    _.size({one : 1, two : 2, three : 3});
+    => 3
+    
 ```javascript
-    _.reduce = function(obj, memo, iterator, context) {
-    if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
-    _.each(obj, function(value, index, list) {
-      memo = iterator.call(context, memo, value, index, list);
-    });
-      return memo;
+    // Source
+    _.size = function(obj) {
+      return _.toArray(obj).length;
     };
 ```
 
+
+# Arrays 
+## first(Alias : head)
+### 배열의 첫 번째 요소를 반환한다.
+
+변경점 : 1. n 옵션 추가
+         2. 유사 배열 객체인 경우에도 적용할 수 있도록?
+
+    Example)
+    _.first([5, 4, 3, 2, 1]);
+    => 5
+    
+```javascript
+    // Source
+    _.first = function(array, n) {
+      return n ? Array.prototype.slice.call(array, 0, n) : array[0];
+    };
+```
+
+## rest(Alias : tail)
+### 배열의 첫 번째 항목을 제외한 모든 것을 반환.
+#### (0.4.5 추가됨) 
+
+    Example)
+    _.first([5, 4, 3, 2, 1]);
+    => 5
+    
+```javascript
+    // Source
+    _.first = function(array, n) {
+      return n ? Array.prototype.slice.call(array, 0, n) : array[0];
+    };
+```
 
 
 
