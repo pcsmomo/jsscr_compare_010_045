@@ -3,8 +3,8 @@
 #### (0.2.0 이름 변경됨) 
 
     Example)
-    var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
-    => 6
+    >var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
+    >=> 6
 
 ```javascript
     // Source
@@ -26,8 +26,9 @@
 #### (0.3.3 추가됨) 
     
     Example)
-    var sum = _.reduce([1, 2, 3], 0, function(memo, num){ return memo + num });
-    => 6
+    var list = [[0, 1], [2, 3], [4, 5]];
+    var flat = _.reduceRight(list, [], function(a, b) { return a.concat(b); });
+    => [4, 5, 2, 3, 0, 1]
     
 ```javascript
     // Source
@@ -41,16 +42,17 @@
     };
 ```
 
-
-
-
-
-## sortBy(Alias : foldr)
-### 값 주입(오른쪽 값부터)
+## sortBy
+### iterator가 제공하는 기준에 따라 객체의 값을 정렬.
 
 변경점 :  
 
+    Example)
+    _.sortBy([1, 2, 3, 4, 5, 6], function(num){ return Math.sin(num); });
+    => [5, 4, 6, 3, 1, 2]
+    
 ```javascript
+    // Source
     _.reduce = function(obj, memo, iterator, context) {
     if (obj && obj.reduce) return obj.reduce(_.bind(iterator, context), memo);
     _.each(obj, function(value, index, list) {
