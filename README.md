@@ -19,9 +19,10 @@
     };
 ```
 
-[reduce 메서드][c]
-[c]: https://msdn.microsoft.com/ko-kr/library/ie/ff679975(v=vs.94).aspx
+[reduce 메서드][a]
+[a]: https://msdn.microsoft.com/ko-kr/library/ie/ff679975(v=vs.94).aspx
 
+의문] 3라인 이후의 의미..
 
 ## reduceRight(Alias : foldr)
 ### reduce와 동일한 기능을 한다. 하지만 리스트의 오른쪽 값부터 적용한다.
@@ -65,6 +66,34 @@
       }), 'value');
     };
 ```
+
+    View Map
+    0: Object
+    criteria: -0.9589242746631385
+    value: 5
+    1: Object
+    criteria: -0.7568024953079282
+    value: 4
+    2: Object
+    criteria: -0.27941549819892586
+    value: 6
+    3: Object
+    criteria: 0.1411200080598672
+    value: 3
+    4: Object
+    criteria: 0.8414709848078965
+    value: 1
+    5: Object
+    criteria: 0.9092974268256817
+    value: 2
+
+    Example of _.pluck
+    var stooges = [{name : 'moe', age : 40}, {name : 'larry', age : 50}, {name : 'curly', age : 60}];
+    _.pluck(stooges, 'name');
+    => ["moe", "larry", "curly"]
+
+[sort 메서드][b]
+[b]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 
 ## sortedIndex
 ### iterator가순서를 유지하기 위해 객체의 삽입되어야하는 최소의 인덱스를 찾아내는 비교함수를 사용한다.
@@ -111,8 +140,6 @@
 
 ## size
 ### 안전하게 객체의 요소 수를 돌려 준다.
-
-변경점 :  
 
     Example)
     _.size({one : 1, two : 2, three : 3});
@@ -232,10 +259,6 @@
       return -1;
     };
 ```
-
-
-
-
 
 
 
