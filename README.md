@@ -47,8 +47,6 @@
 ## sortBy
 ### iterator가 제공하는 기준에 따라 객체의 값을 정렬한다.
 
-변경점 :  
-
     Example)
     _.sortBy([1, 2, 3, 4, 5, 6], function(num){ return Math.sin(num); });
     => [5, 4, 6, 3, 1, 2]
@@ -71,8 +69,6 @@
 ## sortedIndex
 ### iterator가순서를 유지하기 위해 객체의 삽입되어야하는 최소의 인덱스를 찾아내는 비교함수를 사용한다.
 
-변경점 :  
-
     Example)
     _.sortedIndex([10, 20, 30, 40, 50], 35);
     => 3
@@ -93,8 +89,6 @@
 ## toArray
 ### 안전하게 배열로 변환하여 모든 것을 iterable 하게 한다.
 
-변경점 :  
-
     Example)
     (function(){ return _.toArray(arguments).slice(0); })(1, 2, 3);
     => [1, 2, 3]
@@ -102,9 +96,9 @@
 ```javascript
     // Source
     _.toArray = function(iterable) {
-      if (!iterable) return [];
-      if (_.isArray(iterable)) return iterable;
-      return _.map(iterable, function(val){ return val; });
+      if (!iterable) return [];         // falsy 값이면 빈객체 반환
+      if (_.isArray(iterable)) return iterable;     // 이미 배열이면 그대로 반환
+      return _.map(iterable, function(val){ return val; });     // 유사배열객체일 경우 _.map 을 이용하여 배열로 변환하여 반환
     };
 ```
 
@@ -129,12 +123,13 @@
 ## first(Alias : head)
 ### 배열의 첫 번째 요소를 반환한다.
 
-변경점 : 1. n 옵션 추가
-         2. 유사 배열 객체인 경우에도 적용할 수 있도록?
+변경점 :  n 옵션 추가
 
     Example)
     _.first([5, 4, 3, 2, 1]);
     => 5
+    _.first([5, 4, 3, 2, 1], 3);
+    => [5, 4, 3]
     
 ```javascript
     // Source
@@ -148,13 +143,15 @@
 #### (0.4.5 추가됨) 
 
     Example)
-    _.first([5, 4, 3, 2, 1]);
-    => 5
+    _.rest([5, 4, 3, 2, 1]);
+    => [4, 3, 2, 1]
+    _.rest([5, 4, 3, 2, 1], 3);
+    => [2, 1]
     
 ```javascript
     // Source
-    _.first = function(array, n) {
-      return n ? Array.prototype.slice.call(array, 0, n) : array[0];
+    _.rest = function(array, index) {
+      return Array.prototype.slice.call(array, _.isUndefined(index) ? 1 : index);
     };
 ```
 
