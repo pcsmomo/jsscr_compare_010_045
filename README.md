@@ -95,6 +95,8 @@ _.sortBy = function(obj, iterator, context) {
 [sort 메서드][b]
 [b]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 
+```javascript
+/*
 ## sortedIndex
 ### iterator가순서를 유지하기 위해 객체의 삽입되어야하는 최소의 인덱스를 찾아내는 비교함수를 사용한다.
 
@@ -102,7 +104,7 @@ _.sortBy = function(obj, iterator, context) {
     _.sortedIndex([10, 20, 30, 40, 50], 35);
     => 3
     
-```javascript
+
 // Source
 _.sortedIndex = function(array, obj, iterator) {
   iterator = iterator || _.identity;
@@ -113,6 +115,7 @@ _.sortedIndex = function(array, obj, iterator) {
   }
   return low;
 };
+*/
 ```
 
 ## toArray
